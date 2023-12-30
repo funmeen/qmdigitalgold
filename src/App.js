@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ntlogo from './assets/website.nt.logo.png';
-import qmmobileapps1 from './assets/mobileapps1.png';
-import qmmobileapps2 from './assets/mobileapps2.png';
+import qmmobileapps from './assets/mobileapps.png';
 import goldbar from './assets/goldbar.jpg';
 import './App.css';
 
@@ -41,12 +40,7 @@ function HomePage({ onSignUpClick }) {
       </div>
       <div className="right-column">
         <div className="home-tiles-3">
-          <div className="circle-1"></div>
-          <div className="circle-2"></div>
-          <div className="circle-3"></div>
-          <div className="circle-4"></div>
-          <img src={qmmobileapps1} alt="" className="qm-mobile-1" />
-          <img src={qmmobileapps2} alt="" className="qm-mobile-2" />
+          <img src={qmmobileapps} alt="" className="qm-mobile" />
         </div>
       </div>
     </div>
