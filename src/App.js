@@ -20,17 +20,19 @@ function HomePage({ onSignUpClick }) {
   return (
     <div className="home-section">
       <div className="left-column">
-        <div className="home-tiles-1">
-          <div className="content-container">
-            <h1>BELI, SIMPAN DAN GANDAKAN EMAS</h1>
-            <p>
-              Dapatkan panduan daripada pasukan kami yang berpengalaman. Tekan
-              butang sekarang untuk menghubungi kami dan mulakan perjalanan ke
-              arah kebebasan kewangan bersama Quantum Metal.
-            </p>
-            <button className="signUpButton" onClick={onSignUpClick}>
-              Sign Up
-            </button>
+        <div className="left-box">
+          <div className="home-tiles-1">
+            <div className="content-container">
+              <h1>BELI, SIMPAN DAN GANDAKAN EMAS</h1>
+              <p>
+                Dapatkan panduan daripada pasukan kami yang berpengalaman. Tekan
+                butang sekarang untuk menghubungi kami dan mulakan perjalanan ke
+                arah kebebasan kewangan bersama Quantum Metal.
+              </p>
+              <button className="signUpButton" onClick={onSignUpClick}>
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
         <div className="home-tiles-2">
@@ -53,7 +55,7 @@ function HomePage({ onSignUpClick }) {
 
 function SignInPage({ onBackClick }) {
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div className="home-section">
       <h1>Sign In Page</h1>
       <p>Hello</p>
       <button onClick={onBackClick}>Back to Home</button>
@@ -61,12 +63,28 @@ function SignInPage({ onBackClick }) {
   );
 }
 
-function SignUpPage({ onBackClick }) {
+function SignUpPage({ onBackClick, onSignUpSubmitClick }) {
   return (
-    <div style={{ backgroundColor: 'white' }}>
-      <h1>Sign Up Page</h1>
-      <p>Hello</p>
+    <div className="home-section">
+      <div className="left-column">
+        <div className="left-box">
+          <div className="signup-box">
+            <h1>Sign Up</h1>
+            <p>FULLNAME</p>
+            <p>PASSWORD</p>
+            <p>EMAIL</p>
+            <div className="content-container">
+              <button className="signUpSubmitButton" onClick={onSignUpSubmitClick}>
+                  Sign Up
+                </button>
+            </div>
+          </div>
+          </div>
       <button onClick={onBackClick}>Back to Home</button>
+      </div>
+      <div className="right-column">
+
+      </div>
     </div>
   );
 }
