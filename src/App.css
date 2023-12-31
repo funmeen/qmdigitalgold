@@ -39,9 +39,14 @@
   align-items: center;
 }
 
-.right-column {
+.right-column-red {
   width: 50%;
   background-color: #F8451C;
+}
+
+.right-column-white {
+  width: 50%;
+  background-color: #ffffff;
 }
 
 .right-box{

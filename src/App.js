@@ -4,6 +4,7 @@ import qmmobileapps from './assets/mobileapps.png';
 import goldbar from './assets/goldbar.jpg';
 import './App.css';
 
+//header page
 function Header({ onSignInClick }) {
   return (
     <header className="header">
@@ -15,6 +16,7 @@ function Header({ onSignInClick }) {
   );
 }
 
+//home page
 function HomePage({ onSignUpClick }) {
   return (
     <div className="home-section">
@@ -38,7 +40,7 @@ function HomePage({ onSignUpClick }) {
           <img src={goldbar} alt="" className="img-tiles-2" />
         </div>
       </div>
-      <div className="right-column">
+      <div className="right-column-red">
         <div className="home-tiles-3">
           <img src={qmmobileapps} alt="" className="qm-mobile" />
         </div>
@@ -47,16 +49,32 @@ function HomePage({ onSignUpClick }) {
   );
 }
 
-function SignInPage({ onBackClick }) {
+//sign in page
+function SignInPage({ onBackClick, onLoginClick }) {
   return (
     <div className="home-section">
-      <h1>Sign In Page</h1>
-      <p>Hello</p>
+      <div className="left-column">
+        <div className="left-box">
+          <div className="signup-box">
+            <h1>Login</h1>
+            <p>EMAIL</p>
+              <input className="input-style" id="email" type="text" placeholder="Your email address"></input>
+            <p>PASSWORD</p>
+              <input className="input-style" id="password" type="password" placeholder="******************"></input>
+            
+              <button className="signUpSubmitButton" onClick={onLoginClick}>
+                  Sign Up
+                </button>
+          </div>
+          </div>
       <button onClick={onBackClick}>Back to Home</button>
+      </div>
+
     </div>
   );
 }
 
+//sign up page
 function SignUpPage({ onBackClick, onSignUpSubmitClick }) {
   return (
     <div className="home-section">
@@ -77,13 +95,12 @@ function SignUpPage({ onBackClick, onSignUpSubmitClick }) {
           </div>
       <button onClick={onBackClick}>Back to Home</button>
       </div>
-      <div className="right-column">
 
-      </div>
     </div>
   );
 }
 
+//body where reload when user select pages
 function Body({ showSignInPage, handleBackClick, showSignUpPage, onSignUpClick }) {
   return (
     <div>
