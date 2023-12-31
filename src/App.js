@@ -65,13 +65,14 @@ function SignUpPage({ onBackClick, onSignUpSubmitClick }) {
           <div className="signup-box">
             <h1>Sign Up</h1>
             <p>FULLNAME</p>
+              <input className="input-style" id="username" type="text" placeholder="Enter your full name"></input>
             <p>PASSWORD</p>
+              <input className="input-style" id="password" type="password" placeholder="******************"></input>
             <p>EMAIL</p>
-            <div className="content-container">
+              <input className="input-style" id="email" type="text" placeholder="Your email address"></input>
               <button className="signUpSubmitButton" onClick={onSignUpSubmitClick}>
                   Sign Up
                 </button>
-            </div>
           </div>
           </div>
       <button onClick={onBackClick}>Back to Home</button>
