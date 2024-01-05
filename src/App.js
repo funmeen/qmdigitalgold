@@ -17,7 +17,8 @@ function Header({ onSignInClick }) {
 }
 
 //home page
-function HomePage({ onSignUpClick }) {
+function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, gotoGAEPage}) {
+  
   return (
     <>
       <div className='mx-auto flex flex-col sm:flex-row'>
@@ -26,6 +27,7 @@ function HomePage({ onSignUpClick }) {
             <div className='bg-yellow-300 flex flex-col items-center justify-center'>
               <h3 className='p-6 sm:p-10 text-3xl sm:text-7xl font-semibold text-gray-800'>BELI, SIMPAN DAN GANDAKAN EMAS</h3>
               <p className='p-6 sm:p-10 text-lg sm:text-2xl text-gray-600'>Dapatkan panduan daripada pasukan kami yang berpengalaman. Tekan butang sekarang untuk menghubungi kami dan mulakan perjalanan ke arah kebebasan kewangan bersama Quantum Metal.</p>
+              {/* user click signup from homepage  */}
               <button className="signUpButton" onClick={onSignUpClick}>
                 Sign Up
               </button>
@@ -55,6 +57,9 @@ function HomePage({ onSignUpClick }) {
                         <h3 className='text-2xl font-bold mb-4'>Gold Storage Account</h3>
                         <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
                             orci quis justo aliquam euismod eget a leo.</p>
+                        <button className="" onClick={gotoGSAPage}>
+                          More
+                        </button>
                     </div>
                 </div>
                 <div className='w-full md:w-1/3 px-4 mb-8'>
@@ -63,6 +68,9 @@ function HomePage({ onSignUpClick }) {
                         <h3 className='text-2xl font-bold mb-4'>Gold Convert Account</h3>
                         <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
                             orci quis justo aliquam euismod eget a leo.</p>
+                        <button className="" onClick={gotoGCAPage}>
+                          More
+                        </button>
                     </div>
                 </div>
 
@@ -72,6 +80,9 @@ function HomePage({ onSignUpClick }) {
                         <h3 className='text-2xl font-bold mb-4'>Gold Asset Enhancement</h3>
                         <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
                             orci quis justo aliquam euismod eget a leo.</p>
+                        <button className="" onClick={gotoGAEPage}>
+                          More
+                        </button>
                     </div>
                 </div>
             </div>
@@ -101,6 +112,7 @@ function SignInPage({ onBackClick, onLoginClick }) {
             <input className="input-style" id="email" type="text" placeholder="Your email address" />
             <p>PASSWORD</p>
             <input className="input-style" id="password" type="password" placeholder="******************" />
+            
             <button className="signUpSubmitButton" onClick={onLoginClick}>
               Sign Up
             </button>
@@ -139,16 +151,43 @@ function SignUpPage({ onBackClick, onSignUpSubmitClick }) {
   );
 }
 
+function GSAPage({ onBackClick }) {
+  return (
+      <button onClick={onBackClick}>Back to Home</button>
+
+  );
+}
+
+function GCAPage({ onBackClick }) {
+  return (
+      <button onClick={onBackClick}>Back to Home</button>
+
+  );
+}
+
+function GAEPage({ onBackClick }) {
+  return (
+      <button onClick={onBackClick}>Back to Home</button>
+
+  );
+}
+
 //body where reload when user select pages
-function Body({ showSignInPage, handleBackClick, showSignUpPage, onSignUpClick }) {
+function Body({ showSignInPage, showSignUpPage, showGSAPage, showGCAPage, showGAEPage, onSignUpClick, gotoGSAPage, gotoGCAPage, gotoGAEPage, handleBackClick }) {
   return (
     <div>
-      {   showSignInPage ? (
+      {showSignInPage ? (
         <SignInPage onBackClick={handleBackClick} />
       ) : showSignUpPage ? (
         <SignUpPage onBackClick={handleBackClick} />
+      ) : showGSAPage ? (
+        <GSAPage onBackClick={handleBackClick} />
+      ) : showGCAPage ? (
+        <GCAPage onBackClick={handleBackClick} />
+      ) : showGAEPage ? (
+        <GAEPage onBackClick={handleBackClick} />
       ) : (
-        <HomePage onSignUpClick={onSignUpClick} />
+        <HomePage onSignUpClick={onSignUpClick} gotoGSAPage={gotoGSAPage} gotoGCAPage={gotoGCAPage} gotoGAEPage={gotoGAEPage} />
       )}
     </div>
   );
@@ -157,6 +196,9 @@ function Body({ showSignInPage, handleBackClick, showSignUpPage, onSignUpClick }
 function App() {
   const [showSignInPage, setShowSignInPage] = useState(false);
   const [showSignUpPage, setShowSignUpPage] = useState(false);
+  const [showGSAPage, setShowGSAPage] = useState(false);
+  const [showGCAPage, setShowGCAPage] = useState(false);
+  const [showGAEPage, setShowGAEPage] = useState(false);
 
   const handleSignInClick = () => {
     setShowSignInPage(true);
@@ -165,20 +207,40 @@ function App() {
   const handleBackClick = () => {
     setShowSignInPage(false);
     setShowSignUpPage(false);
+    setShowGSAPage(false);
+    setShowGCAPage(false);
+    setShowGAEPage(false);
   };
 
   const handleSignUpClick = () => {
     setShowSignUpPage(true);
   };
 
+  const handlegotoGSAPage = () => {
+    setShowGSAPage(true);
+  };
+
+  const handlegotoGCAPage = () => {
+    setShowGCAPage(true);
+  };
+
+  const handlegotoGAEPage = () => {
+    setShowGAEPage(true);
+  };
+
   return (
     <div>
       <Header onSignInClick={handleSignInClick} />
       <Body
-        onSignUpClick={handleSignUpClick}
         showSignInPage={showSignInPage}
-        
         showSignUpPage={showSignUpPage}
+        showGSAPage={showGSAPage}
+        showGCAPage={showGCAPage}
+        showGAEPage={showGAEPage}
+        onSignUpClick={handleSignUpClick}
+        gotoGSAPage={handlegotoGSAPage}
+        gotoGCAPage={handlegotoGCAPage}
+        gotoGAEPage={handlegotoGAEPage}
         handleBackClick={handleBackClick}
       />
     </div>
