@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+export const currencyformatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'MYR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
 export default function GcaCalculator({ onChange, userInput }) {
   const [tableData, setTableData] = useState([]);
 
@@ -14,9 +21,9 @@ export default function GcaCalculator({ onChange, userInput }) {
 
       return {
         month: month + 1,
-        saving: saving.toFixed(0),
-        survive: survive.toFixed(0),
-        goldPrice: qmBuy,
+        saving: saving,
+        survive: survive,
+        goldPrice: currencyformatter.format(qmBuy),
         gram: gram.toFixed(2),
       };
     });
@@ -42,7 +49,7 @@ export default function GcaCalculator({ onChange, userInput }) {
       <section id="user-input">
         <div className='ml-7'>
           <p className='mb-2'>
-            <label className='text-2xl'>Modal</label>
+            <label className='text-2xl'>Modal (MYR)</label>
           </p>
           <p>
             <input
@@ -57,7 +64,7 @@ export default function GcaCalculator({ onChange, userInput }) {
           </p>
           
           <p className='mb-2'>
-            <label className='text-2xl'>QM Buy (RM)</label>
+            <label className='text-2xl'>QM Buy (MYR)</label>
           </p>
           <p>
             <input
@@ -92,21 +99,21 @@ export default function GcaCalculator({ onChange, userInput }) {
             <table className='ml-7 mx-auto'>
                 <thead>
                     <tr>
-                    <th className='text-center text-xl p-4'>Month</th>
-                    <th className='text-center text-xl p-4'>Saving</th>
-                    <th className='text-center text-xl p-4'>Survive</th>
-                    <th className='text-center text-xl p-4'>Gold Price</th>
-                    <th className='text-center text-xl p-4'>Gram</th>
+                    <th className='text-center text-xl pl-4'>Month</th>
+                    <th className='text-center text-xl pl-8'>Saving</th>
+                    <th className='text-center text-xl pl-8'>Survive</th>
+                    <th className='text-center text-xl pl-8'>Gold Price</th>
+                    <th className='text-center text-xl pl-8'>Gram</th>
                     </tr>
                 </thead>
                 <tbody>
                     {tableData.map((rowData, index) => (
                     <tr key={index}>
                         <td className='text-center'>{rowData.month}</td>
-                        <td className='text-center'>{rowData.saving}</td>
-                        <td className='text-center'>{rowData.survive}</td>
-                        <td className='text-center'>{rowData.goldPrice}</td>
-                        <td className='text-center'>{rowData.gram}</td>
+                        <td className='text-center pl-8'>{currencyformatter.format(rowData.saving)}</td>
+                        <td className='text-center pl-8'>{currencyformatter.format(rowData.survive)}</td>
+                        <td className='text-center pl-8'>{rowData.goldPrice}</td>
+                        <td className='text-center pl-8'>{rowData.gram} g</td>
                     </tr>
                     ))}
                 </tbody>

@@ -4,7 +4,7 @@ import UserInput from "./gcacalculator";
 export default function GCAPage({ onBackClick }) {
   const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
-    qmBuy: 0,
+    qmBuy: 300,
     priceChanges: 0,
   });
 
@@ -49,7 +49,10 @@ export default function GCAPage({ onBackClick }) {
           <div className='p-4 w-full md:w-2/3 md:order-1'>
             <div className='p-4 border rounded-md bg-yellow-300'>
               <h1 className='p-6 sm:p-5 text-5xl sm:text-7xl font-semibold text-gray-800'>Calculator</h1>
-              
+              <div
+                  className='table-container'
+                  style={{ maxWidth: '100%', overflowX: 'auto' }}
+                ></div>
               <UserInput className='items-center justify-center' userInput={userInput} onChange={handleChange} />
 
             </div>
