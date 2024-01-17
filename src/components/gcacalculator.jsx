@@ -96,24 +96,24 @@ export default function GcaCalculator({ onChange, userInput }) {
         </div>
       </section>
         <div className='flex-col'>
-            <table className='ml-7 mx-auto'>
+            <table className='mx-auto border-collapse border border-black'>
                 <thead>
                     <tr>
-                    <th className='text-center text-xl pl-4'>Month</th>
-                    <th className='text-center text-xl pl-8'>Saving</th>
-                    <th className='text-center text-xl pl-8'>Survive</th>
-                    <th className='text-center text-xl pl-8'>Gold Price</th>
-                    <th className='text-center text-xl pl-8'>Gram</th>
+                    <th className='text-center text-xl pl-1 pr-1 border border-black'>Month</th>
+                    <th className='text-center text-xl pl-1 pr-1 border border-black'>Saving</th>
+                    <th className='text-center text-xl pl-1 pr-1 border border-black'>Survive</th>
+                    <th className='text-center text-xl pl-1 pr-1 border border-black'>Gold Price</th>
+                    <th className='text-center text-xl pl-1 pr-1 border border-black'>Gram</th>
                     </tr>
                 </thead>
                 <tbody>
                     {tableData.map((rowData, index) => (
                     <tr key={index}>
-                        <td className='text-center'>{rowData.month}</td>
-                        <td className='text-center pl-8'>{currencyformatter.format(rowData.saving)}</td>
-                        <td className='text-center pl-8'>{currencyformatter.format(rowData.survive)}</td>
-                        <td className='text-center pl-8'>{rowData.goldPrice}</td>
-                        <td className='text-center pl-8'>{rowData.gram} g</td>
+                        <td className='text-center border border-black'>{rowData.month}</td>
+                        <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.saving)}</td>
+                        <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.survive)}</td>
+                        <td className='text-center pl-1 border border-black'>{rowData.goldPrice}</td>
+                        <td className='text-center pl-1 border border-black'>{rowData.gram} g</td>
                     </tr>
                     ))}
                 </tbody>
