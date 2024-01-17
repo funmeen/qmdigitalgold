@@ -37,22 +37,24 @@ export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, goto
               <div className='flex flex-wrap -mx-4 mt-12'>
                   <div className='w-full md:w-1/3 px-4 mb-8'>
                       <div className='rounded-md bg-white shadow-md p-8'>
-                          <div className='text-4xl font-bold text-purple-600 mb-4'>GSA</div>
+                          <div className='text-5xl font-bold text-purple-600 mb-4'>GSA</div>
                           <h3 className='text-2xl font-bold mb-4'>Gold Storage Account</h3>
-                          <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
-                              orci quis justo aliquam euismod eget a leo.</p>
-                          <button className="" onClick={gotoGSAPage}>
+                          <p className='text-black mb-8'>Selamat datang ke GSA - tempat eksklusif untuk menyimpan kekayaan emas Anda.
+                                                              Seperti akaun bank menyimpan wang, GSA adalah tempat di mana setiap gram emas 
+                                                              Anda dikekalkan dengan cermat.</p>
+                          <button className='hover:font-bold' onClick={gotoGSAPage}>
                             More
                           </button>
                       </div>
                   </div>
                   <div className='w-full md:w-1/3 px-4 mb-8'>
                       <div className='rounded-md bg-white shadow-md p-8'>
-                          <div className='text-4xl font-bold text-purple-600 mb-4'>GCA</div>
+                          <div className='text-5xl font-bold text-purple-600 mb-4'>GCA</div>
                           <h3 className='text-2xl font-bold mb-4'>Gold Convert Account</h3>
-                          <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
-                              orci quis justo aliquam euismod eget a leo.</p>
-                          <button className="" onClick={gotoGCAPage}>
+                          <p className='text-black mb-8'>Raihlah kebebasan kewangan untuk berbelanja 
+                                                            sambil terus menyimpan emas! Fasilitas GCA membuka pintu kepada peluang untuk 
+                                                            menukar emas menjadi wang tanpa perlu menjual emas itu sendiri.</p>
+                          <button className='hover:font-bold' onClick={gotoGCAPage}>
                             More
                           </button>
                       </div>
@@ -60,11 +62,12 @@ export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, goto
   
                   <div className='w-full md:w-1/3 px-4 mb-8'>
                       <div className='rounded-md bg-white shadow-md p-8'>
-                          <div className='text-4xl font-bold text-purple-600 mb-4'>GAE</div>
+                          <div className='text-5xl font-bold text-purple-600 mb-4'>GAE</div>
                           <h3 className='text-2xl font-bold mb-4'>Gold Asset Enhancement</h3>
-                          <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec
-                              orci quis justo aliquam euismod eget a leo.</p>
-                          <button className="" onClick={gotoGAEPage}>
+                          <p className='text-black mb-8'>Dengan keunikan Flexi dan pembiayaan Tawarruq, 
+                                                          GAE membawa anda ke dalam dunia modal yang berganda, di mana setiap gram emas anda 
+                                                          berpotensi memberikan untung berganda. </p>
+                          <button className='hover:font-bold' onClick={gotoGAEPage}>
                             More
                           </button>
                       </div>
