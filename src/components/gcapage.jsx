@@ -5,7 +5,8 @@ export default function GCAPage({ onBackClick }) {
   const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
     qmBuy: 300,
-    priceChanges: 0,
+    priceChanges: 10,
+    year: 10,
   });
 
   const handleChange = (inputIdentifier, newValue) => {
@@ -14,21 +15,6 @@ export default function GCAPage({ onBackClick }) {
         ...prevUserInput,
         [inputIdentifier]: newValue,
       };
-
-      // Calculate totalday
-      updatedUserInput.totalday = Math.floor(
-        (new Date() - new Date(updatedUserInput.buydate)) / (1000 * 60 * 60 * 24 *10)
-      );
-
-      // Calculate convertToRM
-      updatedUserInput.convertToRM =
-        (parseFloat(updatedUserInput.netCashOut) +
-        parseFloat(updatedUserInput.managementFeeRefund)) *
-          parseFloat(updatedUserInput.fxRate);
-
-      // Calculate netProfit
-      updatedUserInput.netProfit =
-        updatedUserInput.convertToRM - updatedUserInput.initialInvestment;
 
       return updatedUserInput;
     });
