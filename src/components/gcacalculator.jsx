@@ -9,6 +9,7 @@ export const currencyformatter = new Intl.NumberFormat('en-US', {
 
 export default function GcaCalculator({ onChange, userInput }) {
   const [tableData, setTableData] = useState([]);
+  const [annualTableData, setAnnualTableData] = useState([]);
 
   // Function to calculate and update table data
   const updateTableData = useCallback(() => {
@@ -42,10 +43,34 @@ export default function GcaCalculator({ onChange, userInput }) {
     setTableData([...monthlyData, annualReport]);
   }, [userInput]);
 
+  const updateAnnualTableData = useCallback(() => {
+    const { initialInvestment, priceChanges, year } = userInput;
+    let setSavingTrdData = (initialInvestment * (15 / 100)) * 12;
+    const annualData = [];
+
+    for (let i = 0; i < year; i++) {
+      
+      const dividen = setSavingTrdData * (priceChanges / 100);
+      const totalInvestment = setSavingTrdData + dividen;
+      setSavingTrdData += dividen;
+
+      annualData.push({
+        year: i + 1,
+        dividen: dividen.toFixed(0),
+        setSavingTrdData: setSavingTrdData.toFixed(0),
+        totalInvestment: totalInvestment.toFixed(0),
+      });
+    }
+
+    // Set Annual Table Data
+    setAnnualTableData(annualData);
+  }, [userInput]);
+
   // Update table data when userInput changes
   useEffect(() => {
     updateTableData();
-  }, [userInput, updateTableData]);
+    updateAnnualTableData();
+  }, [userInput, updateTableData, updateAnnualTableData]);
 
   return (
     <div>
@@ -95,6 +120,21 @@ export default function GcaCalculator({ onChange, userInput }) {
               }
             />
           </p>
+
+          <p className='mb-2'>
+            <label className='text-l lg:text-2xl'>Year</label>
+          </p>
+          <p>
+            <input
+              className='text-l lg:text-2xl mb-6'
+              type="number"
+              required
+              value={userInput.year}
+              onChange={(event) =>
+                onChange('year', event.target.value)
+              }
+            />
+          </p>
           
         </div>
       </section>
@@ -125,7 +165,7 @@ export default function GcaCalculator({ onChange, userInput }) {
               </table>
             </div>
           </div>
-          <div className='w-full xl:w-1/2 mt-5 pr-4 xl:mt-0 h-auto'>
+          <div className='w-full xl:w-1/2 mt-5 xl:pr-4 xl:mt-0 h-auto'>
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
                   <thead>
@@ -153,7 +193,7 @@ export default function GcaCalculator({ onChange, userInput }) {
           </div>
         </div>
       </section>
-      {/* Monthly Table Result */}
+      {/* Annual Table Result */}
       <section className='mt-5'>
         <div className='mx-auto flex flex-col xl:flex-row'>
           <div className='w-full mr-5 xl:w-1/2 h-auto'>
@@ -168,13 +208,13 @@ export default function GcaCalculator({ onChange, userInput }) {
                       </tr>
                   </thead>
                   <tbody>
-                      {tableData.map((rowData, index) => (
-                      <tr key={index}>
-                          <td className='text-center text-m border border-black'>{rowData.month}</td>
-                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.saving)}</td>
-                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.savingTrd)}</td>
-                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.survive)}</td>
-                      </tr>
+                      {annualTableData.map((rowData, index) => (
+                        <tr key={index}>
+                          <td className='text-center text-m border border-black'>{rowData.year}</td>
+                          <td className='text-center pl-1 border border-black'>{index > 0 ? currencyformatter.format(annualTableData[index - 1].setSavingTrdData) : 'N/A'}</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.dividen)}</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.totalInvestment)}</td>
+                        </tr>
                       ))}
                   </tbody>
               </table>
