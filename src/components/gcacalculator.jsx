@@ -204,7 +204,7 @@ export default function GcaCalculator({ onChange, userInput }) {
                           <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.saving)}</td>
                           <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.survive)}</td>
                           <td className='text-center pl-1 border border-black'>{rowData.goldPrice}</td>
-                          <td className='text-center pl-1 border border-black'>{rowData.gram} g</td>
+                          <td className='text-center pl-1 border border-black'>{rowData.gram}g</td>
                       </tr>
                       ))}
                   </tbody>
@@ -263,8 +263,8 @@ export default function GcaCalculator({ onChange, userInput }) {
                       {annualTableData.map((rowData, index) => (
                         <tr key={index}>
                           <td className='text-center text-m border border-black'>{rowData.year}</td>
-                          <td className='text-center pl-1 border border-black'>{rowData.gramSaving}</td>
-                          <td className='text-center pl-1 border border-black'>{rowData.yearlyPriceChanges}</td>
+                          <td className='text-center pl-1 border border-black'>{rowData.gramSaving}g</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.yearlyPriceChanges)}</td>
                           <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.currentValue)}</td>
                           <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.yearlyFee)}</td>
                           <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.untungBersih)}</td>
