@@ -243,7 +243,7 @@ export default function GcaCalculator({ onChange, userInput }) {
               </table>
             </div>
           </div>
-          <div className='w-full xl:w-1/2 mt-5 pr-4 xl:mt-0 h-auto'>
+          <div className='w-full xl:w-1/2 mt-5 pr-4 l:pr-0 xl:mt-0 h-auto'>
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
                   <thead>

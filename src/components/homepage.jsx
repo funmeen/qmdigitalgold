@@ -2,7 +2,7 @@ import qmmobileapps from '../assets/mobileapps.png';
 import goldbar from '../assets/goldbar.jpg';
 
 //home page
-export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, gotoGAEPage}) {
+export default function HomePage({ gotoGSAPage, gotoGCAPage, gotoGAEPage}) {
     return (
       <>
         <div className='mx-auto flex flex-col sm:flex-row'>
@@ -12,7 +12,7 @@ export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, goto
                 <h3 className='p-6 sm:p-10 text-3xl sm:text-7xl font-semibold text-gray-800'>BELI, SIMPAN DAN GANDAKAN EMAS</h3>
                 <p className='p-6 sm:p-10 text-lg sm:text-2xl text-gray-600'>Dapatkan panduan daripada pasukan kami yang berpengalaman. Tekan butang sekarang untuk menghubungi kami dan mulakan perjalanan ke arah kebebasan kewangan bersama Quantum Metal.</p>
                 {/* user click signup from homepage  */}
-                <button className="signUpButton" onClick={onSignUpClick}>
+                <button className="signUpButton" onClick={() => window.location.href = 'https://consultant.qbeb.org/profile/KM4DIXFQ'}>
                   Sign Up
                 </button>
               </div>
