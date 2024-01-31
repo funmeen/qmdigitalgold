@@ -37,15 +37,18 @@ export default function GcaCalculator({ onChange, userInput }) {
       savingTrd: monthlyData.reduce((sum, row) => sum + parseFloat(row.savingTrd), 0).toFixed(0),
       survive: monthlyData.reduce((sum, row) => sum + parseFloat(row.survive), 0).toFixed(0),
       goldPrice: '',
-      gram: monthlyData.reduce((sum, row) => sum + parseFloat(row.gram), 0).toFixed(0),
+      gram: monthlyData.reduce((sum, row) => sum + parseFloat(row.gram), 0).toFixed(2),
     };
-
+    
+    
     setTableData([...monthlyData, annualReport]);
   }, [userInput]);
-
+  
   const updateAnnualTableData = useCallback(() => {
-    const { initialInvestment, priceChanges, year } = userInput;
+    const { initialInvestment, qmBuy, priceChanges, year } = userInput;
     let setSavingTrdData = (initialInvestment * (15 / 100)) * 12;
+    const gramSaving = (initialInvestment / qmBuy / 1.07) * 12;
+    const totalSurvive = (initialInvestment * (85 / 100))*12;
     const annualData = [];
 
     for (let i = 0; i < year; i++) {
@@ -53,12 +56,21 @@ export default function GcaCalculator({ onChange, userInput }) {
       const dividen = setSavingTrdData * (priceChanges / 100);
       const totalInvestment = setSavingTrdData + dividen;
       setSavingTrdData += dividen;
+      let yearlyPriceChanges = qmBuy * ( 1 + ((priceChanges/100) * (i+1)));
+      const currentValue = yearlyPriceChanges * gramSaving;
+      let yearlyFee = totalSurvive * (3.5/100) * (i+1);
+      let untungBersih = currentValue - totalSurvive - yearlyFee;
 
       annualData.push({
         year: i + 1,
-        dividen: dividen.toFixed(0),
-        setSavingTrdData: setSavingTrdData.toFixed(0),
-        totalInvestment: totalInvestment.toFixed(0),
+        dividen: dividen,
+        setSavingTrdData: setSavingTrdData,
+        totalInvestment: totalInvestment,
+        gramSaving: gramSaving.toFixed(2),
+        yearlyPriceChanges: yearlyPriceChanges.toFixed(2),
+        currentValue: currentValue,
+        yearlyFee: yearlyFee,
+        untungBersih: untungBersih,
       });
     }
 
@@ -74,6 +86,7 @@ export default function GcaCalculator({ onChange, userInput }) {
 
   return (
     <div>
+      <p id="savingTrdDisplay"></p>
       <section id="user-input">
         <div className='lg:ml-7'>
           <p className='mb-2'>
@@ -140,6 +153,7 @@ export default function GcaCalculator({ onChange, userInput }) {
       </section>
       {/* Monthly Table Result */}
       <section>
+
         <div className='mx-auto flex flex-col xl:flex-row'>
           <div className='w-full mr-5 xl:w-1/2 h-auto'>
             <div className='flex overflow-x-auto space-x-8'>
@@ -225,22 +239,24 @@ export default function GcaCalculator({ onChange, userInput }) {
               <table className='mx-auto border border-black bg-white'>
                   <thead>
                       <tr>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Month</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Saving</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Survive</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Gold Price</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Gram</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Year</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Emas Terkumpul</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Kenaikan Harga Emas</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Nilai Semasa</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Fee</th>
+                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Profit</th>
                       </tr>
                   </thead>
                   <tbody>
-                      {tableData.map((rowData, index) => (
-                      <tr key={index}>
-                          <td className='text-center text-m border border-black'>{rowData.month}</td>
-                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.saving)}</td>
-                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.survive)}</td>
-                          <td className='text-center pl-1 border border-black'>{rowData.goldPrice}</td>
-                          <td className='text-center pl-1 border border-black'>{rowData.gram} g</td>
-                      </tr>
+                      {annualTableData.map((rowData, index) => (
+                        <tr key={index}>
+                          <td className='text-center text-m border border-black'>{rowData.year}</td>
+                          <td className='text-center pl-1 border border-black'>{rowData.gramSaving}</td>
+                          <td className='text-center pl-1 border border-black'>{rowData.yearlyPriceChanges}</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.currentValue)}</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.yearlyFee)}</td>
+                          <td className='text-center pl-1 border border-black'>{currencyformatter.format(rowData.untungBersih)}</td>
+                        </tr>
                       ))}
                   </tbody>
               </table>
