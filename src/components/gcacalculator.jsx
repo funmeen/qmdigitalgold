@@ -159,6 +159,9 @@ export default function GcaCalculator({ onChange, userInput }) {
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
                   <thead>
+                  <tr>
+                    <th colSpan="4" className='text-center'>Teknik kumpul aset dengan kaedah biasa</th>
+                  </tr>
                       <tr>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Month</th>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Income</th>
@@ -183,6 +186,9 @@ export default function GcaCalculator({ onChange, userInput }) {
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
                   <thead>
+                  <tr>
+                    <th colSpan="5" className='text-center'>Teknik kumpul aset dengan kaedah GCA</th>
+                  </tr>
                       <tr>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Month</th>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Saving</th>
@@ -213,14 +219,17 @@ export default function GcaCalculator({ onChange, userInput }) {
           <div className='w-full mr-5 xl:w-1/2 h-auto'>
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
-                  <thead>
-                      <tr>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Year</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Simpanan</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Dividen</th>
-                      <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Total</th>
-                      </tr>
-                  </thead>
+              <thead>
+                <tr>
+                  <th colSpan="4" className='text-center'>Pulangan dividen tahunan dengan kaedah biasa</th>
+                </tr>
+                <tr>
+                  <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Year</th>
+                  <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Simpanan</th>
+                  <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Dividen</th>
+                  <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Total</th>
+                </tr>
+              </thead>
                   <tbody>
                       {annualTableData.map((rowData, index) => (
                         <tr key={index}>
@@ -238,6 +247,9 @@ export default function GcaCalculator({ onChange, userInput }) {
             <div className='flex overflow-x-auto space-x-8'>
               <table className='mx-auto border border-black bg-white'>
                   <thead>
+                      <tr>
+                        <th colSpan="6" className='text-center'>Pulangan dividen tahunan dengan kaedah GCA</th>
+                      </tr>
                       <tr>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Year</th>
                       <th className='text-center text-l lg:text-xl pl-1 pr-1 border border-black'>Emas Terkumpul</th>
