@@ -5,11 +5,11 @@ import goldbar from '../assets/goldbar.jpg';
 export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, gotoGAEPage}) {
     return (
       <>
-        <div className='mx-auto flex flex-col sm:flex-row'>
+        <div className='mx-auto flex flex-col md:flex-row'>
             {/* Column 1 */}
-            <div className='w-full sm:w-1/2 h-auto'>
+            <div className='w-full md:w-1/2 h-auto'>
               <div className='bg-yellow-300 flex flex-col items-center justify-center'>
-                <h3 className='p-6 sm:p-10 text-3xl sm:text-7xl font-semibold text-gray-800'>BELI, SIMPAN DAN GANDAKAN EMAS</h3>
+                <h3 className='p-6 sm:p-10 text-3xl md:text-5xl sm:text-7xl font-semibold text-gray-800'>BELI, SIMPAN DAN GANDAKAN EMAS</h3>
                 <p className='p-6 sm:p-10 text-lg sm:text-2xl text-gray-600'>Dapatkan panduan daripada pasukan kami yang berpengalaman. Tekan butang sekarang untuk menghubungi kami dan mulakan perjalanan ke arah kebebasan kewangan bersama Quantum Metal.</p>
                 {/* user click signup from homepage  */}
                 <button className="signUpButton" onClick={onSignUpClick}>
@@ -21,7 +21,7 @@ export default function HomePage({ onSignUpClick, gotoGSAPage, gotoGCAPage, goto
               </div>
             </div>
             {/* Column 2 */}
-            <div className='w-full sm:w-1/2 bg-red-500 flex items-center justify-center'>
+            <div className='w-full md:w-1/2 bg-red-500 flex items-center justify-center'>
               <img src={qmmobileapps} alt="" className="qm-mobile" />
             </div>
           </div>

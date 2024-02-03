@@ -5,9 +5,9 @@ export default function Header({ onSignInClick }) {
     return (
       <header className="header">
         <img src={ntlogo} alt="" className="logo" />
-          {/* <button className="signInButton" onClick={onSignInClick}>
+          <button className="signInButton" onClick={onSignInClick}>
             Sign In
-    </button> */}
+          </button>
       </header>
     );
   }

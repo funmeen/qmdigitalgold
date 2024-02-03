@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/header';
 import Body from './components/body';
+import UserPage from './components/UserPage';
 
 function App() {
   const [showSignInPage, setShowSignInPage] = useState(false);
@@ -10,6 +12,7 @@ function App() {
   const [showGSAPage, setShowGSAPage] = useState(false);
   const [showGCAPage, setShowGCAPage] = useState(false);
   const [showGAEPage, setShowGAEPage] = useState(false);
+  const [signedInUser, setSignedInUser] = useState(null);
 
   const handleSignInClick = () => {
     setShowSignInPage(true);
@@ -23,38 +26,41 @@ function App() {
     setShowGAEPage(false);
   };
 
-  const handleSignUpClick = () => {
-    setShowSignUpPage(true);
-  };
-
-  const handlegotoGSAPage = () => {
-    setShowGSAPage(true);
-  };
-
-  const handlegotoGCAPage = () => {
-    setShowGCAPage(true);
-  };
-
-  const handlegotoGAEPage = () => {
-    setShowGAEPage(true);
+  const handleSignIn = (userData) => {
+    console.log('Signed in as:', userData);
+    setSignedInUser(userData.username);
   };
 
   return (
-    <div>
-      <Header onSignInClick={handleSignInClick} />
-      <Body
-        showSignInPage={showSignInPage}
-        showSignUpPage={showSignUpPage}
-        showGSAPage={showGSAPage}
-        showGCAPage={showGCAPage}
-        showGAEPage={showGAEPage}
-        onSignUpClick={handleSignUpClick}
-        gotoGSAPage={handlegotoGSAPage}
-        gotoGCAPage={handlegotoGCAPage}
-        gotoGAEPage={handlegotoGAEPage}
-        handleBackClick={handleBackClick}
-      />
-    </div>
+    <Router>
+      <div>
+        <Header onSignInClick={handleSignInClick} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Body
+                showSignInPage={showSignInPage}
+                showSignUpPage={showSignUpPage}
+                showGSAPage={showGSAPage}
+                showGCAPage={showGCAPage}
+                showGAEPage={showGAEPage}
+                onSignUpClick={() => setShowSignUpPage(true)}
+                gotoGSAPage={() => setShowGSAPage(true)}
+                gotoGCAPage={() => setShowGCAPage(true)}
+                gotoGAEPage={() => setShowGAEPage(true)}
+                handleBackClick={handleBackClick}
+                handleSignIn={handleSignIn}
+              />
+            }
+          />
+          <Route
+            path="/user"
+            element={<UserPage signedInUsername={signedInUser} onBackClick={handleBackClick} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
